@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useI18n, Language } from "../i18n";
+import { useI18n, Language, languageList } from "../i18n";
 import { useAuth } from "../context/AuthContext";
 import { ProfileDropdown } from "./ProfileDropdown";
 import { Globe, ChevronDown, Menu, X, User } from "lucide-react";
@@ -58,7 +58,12 @@ export const Navbar: React.FC = () => {
   const languageLabels: Record<Language, string> = {
     en: "English",
     hi: "हिंदी",
-    mr: "मराठी"
+    mr: "मराठी",
+    gu: "ગુજરાતી",
+    kn: "ಕನ್ನಡ",
+    te: "తెలుగు",
+    ta: "தமிழ்",
+    pa: "ਪੰਜਾਬੀ"
   };
 
   return (
@@ -146,34 +151,20 @@ export const Navbar: React.FC = () => {
             </button>
 
             {langDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-36 bg-white rounded-2xl shadow-xl border border-[#E8E8E8] py-1.5 z-50 animate-fade-in">
-                <button
-                  onClick={() => { setLanguage("en"); setLangDropdownOpen(false); }}
-                  className={`w-full text-left px-4 py-2 text-[13px] transition-colors hover:bg-neutral-50 flex items-center justify-between ${
-                    language === "en" ? "font-medium text-[#111111]" : "text-[#6F6F6F]"
-                  }`}
-                >
-                  <span>English</span>
-                  {language === "en" && <span className="w-1.5 h-1.5 rounded-full bg-black" />}
-                </button>
-                <button
-                  onClick={() => { setLanguage("hi"); setLangDropdownOpen(false); }}
-                  className={`w-full text-left px-4 py-2 text-[13px] transition-colors hover:bg-neutral-50 flex items-center justify-between ${
-                    language === "hi" ? "font-medium text-[#111111]" : "text-[#6F6F6F]"
-                  }`}
-                >
-                  <span>हिंदी</span>
-                  {language === "hi" && <span className="w-1.5 h-1.5 rounded-full bg-black" />}
-                </button>
-                <button
-                  onClick={() => { setLanguage("mr"); setLangDropdownOpen(false); }}
-                  className={`w-full text-left px-4 py-2 text-[13px] transition-colors hover:bg-neutral-50 flex items-center justify-between ${
-                    language === "mr" ? "font-medium text-[#111111]" : "text-[#6F6F6F]"
-                  }`}
-                >
-                  <span>मराठी</span>
-                  {language === "mr" && <span className="w-1.5 h-1.5 rounded-full bg-black" />}
-                </button>
+              <div className="absolute right-0 mt-2 w-44 max-h-80 overflow-y-auto bg-white rounded-2xl shadow-xl border border-[#E8E8E8] py-1.5 z-50 animate-fade-in divide-y divide-neutral-100">
+                {languageList.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => { setLanguage(lang.code); setLangDropdownOpen(false); }}
+                    className={`w-full text-left px-4 py-2 text-[13px] transition-colors hover:bg-neutral-50 flex items-center justify-between ${
+                      language === lang.code ? "font-medium text-[#111111] bg-neutral-50/50" : "text-[#6F6F6F]"
+                    }`}
+                  >
+                    <span className="font-medium">{lang.nativeName}</span>
+                    <span className="text-[11px] text-[#9E9E9E] font-normal">{lang.name}</span>
+                    {language === lang.code && <span className="w-1.5 h-1.5 rounded-full bg-black ml-1 shrink-0" />}
+                  </button>
+                ))}
               </div>
             )}
           </div>
@@ -255,27 +246,20 @@ export const Navbar: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-3 border-t border-[#EBEBEB]">
             {/* Language Selection */}
-            <div className="flex items-center justify-between sm:justify-start gap-2 text-xs">
+            <div className="flex flex-col gap-1.5 text-xs">
               <span className="text-[#6F6F6F]">Language:</span>
-              <div className="flex items-center gap-1">
-                <button
-                  onClick={() => setLanguage("en")}
-                  className={`px-2.5 py-1 rounded-full text-xs ${language === "en" ? "bg-black text-white font-medium" : "text-[#6F6F6F] bg-neutral-100"}`}
-                >
-                  EN
-                </button>
-                <button
-                  onClick={() => setLanguage("hi")}
-                  className={`px-2.5 py-1 rounded-full text-xs ${language === "hi" ? "bg-black text-white font-medium" : "text-[#6F6F6F] bg-neutral-100"}`}
-                >
-                  HI
-                </button>
-                <button
-                  onClick={() => setLanguage("mr")}
-                  className={`px-2.5 py-1 rounded-full text-xs ${language === "mr" ? "bg-black text-white font-medium" : "text-[#6F6F6F] bg-neutral-100"}`}
-                >
-                  MR
-                </button>
+              <div className="flex items-center gap-1.5 flex-wrap">
+                {languageList.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => setLanguage(lang.code)}
+                    className={`px-2.5 py-1 rounded-full text-xs transition-colors ${
+                      language === lang.code ? "bg-black text-white font-medium shadow-xs" : "text-[#6F6F6F] bg-neutral-100 hover:bg-neutral-200"
+                    }`}
+                  >
+                    {lang.nativeName}
+                  </button>
+                ))}
               </div>
             </div>
 

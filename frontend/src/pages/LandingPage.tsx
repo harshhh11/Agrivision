@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useFarm } from "../context/FarmContext";
 import { useAuth } from "../context/AuthContext";
-import { useI18n } from "../i18n";
+import { useI18n, languageList } from "../i18n";
 import { ProfileDropdown } from "../components/ProfileDropdown";
 import { ArrowRight, Globe, ChevronDown, User } from "lucide-react";
 
@@ -118,25 +118,19 @@ export const LandingPage: React.FC = () => {
               </button>
 
               {langOpen && (
-                <div className="absolute right-0 mt-2 w-32 bg-white rounded-2xl shadow-xl border border-black/10 py-1.5 z-50 animate-fade-in text-xs">
-                  <button
-                    onClick={() => { setLanguage("en"); setLangOpen(false); }}
-                    className={`w-full text-left px-3.5 py-2 hover:bg-neutral-50 ${language === "en" ? "font-bold text-black" : "text-neutral-600"}`}
-                  >
-                    English
-                  </button>
-                  <button
-                    onClick={() => { setLanguage("hi"); setLangOpen(false); }}
-                    className={`w-full text-left px-3.5 py-2 hover:bg-neutral-50 ${language === "hi" ? "font-bold text-black" : "text-neutral-600"}`}
-                  >
-                    हिंदी
-                  </button>
-                  <button
-                    onClick={() => { setLanguage("mr"); setLangOpen(false); }}
-                    className={`w-full text-left px-3.5 py-2 hover:bg-neutral-50 ${language === "mr" ? "font-bold text-black" : "text-neutral-600"}`}
-                  >
-                    मराठी
-                  </button>
+                <div className="absolute right-0 mt-2 w-40 max-h-72 overflow-y-auto bg-white rounded-2xl shadow-xl border border-black/10 py-1.5 z-50 animate-fade-in text-xs divide-y divide-neutral-100">
+                  {languageList.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => { setLanguage(lang.code); setLangOpen(false); }}
+                      className={`w-full text-left px-3.5 py-2 hover:bg-neutral-50 flex items-center justify-between ${
+                        language === lang.code ? "font-bold text-black bg-neutral-50" : "text-neutral-600"
+                      }`}
+                    >
+                      <span className="font-medium">{lang.nativeName}</span>
+                      <span className="text-[10px] text-neutral-400 font-normal">{lang.name}</span>
+                    </button>
+                  ))}
                 </div>
               )}
             </div>
