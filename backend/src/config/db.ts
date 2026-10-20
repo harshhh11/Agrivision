@@ -1,7 +1,14 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import dns from "dns";
 
 dotenv.config();
+
+try {
+  dns.setServers(["8.8.8.8", "1.1.1.1"]);
+} catch {
+  // Ignore if restricted
+}
 
 let isConnected = false;
 
@@ -13,7 +20,7 @@ export async function connectDB(): Promise<boolean> {
   try {
     console.log(`[AgriTwin DB] Connecting to MongoDB: ${primaryUri}...`);
     await mongoose.connect(primaryUri, {
-      serverSelectionTimeoutMS: 1500,
+      serverSelectionTimeoutMS: 5000,
     });
     isConnected = true;
     console.log("[AgriTwin DB] Successfully connected to MongoDB instance.");
