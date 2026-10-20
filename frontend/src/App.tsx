@@ -6,6 +6,7 @@ import { I18nProvider } from "./i18n";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { FarmAIAssistant } from "./components/FarmAIAssistant";
 
 // Pages
 import { LandingPage } from "./pages/LandingPage";
@@ -202,6 +203,7 @@ const AppShell: React.FC = () => {
           <Route path="*" element={<Navigate to="/farm" replace />} />
         </Routes>
       </main>
+      <FarmAIAssistant />
       <Footer />
     </div>
   );

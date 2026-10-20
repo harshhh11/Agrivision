@@ -15,7 +15,7 @@ import {
 export const DashboardPage: React.FC = () => {
   const { user, farmerProfile } = useAuth();
   const { farm, fields, selectedField, setSelectedField } = useFarm();
-  const { t, formatYield, formatArea } = useI18n();
+  const { t, formatYield, formatArea, translateLocation } = useI18n();
 
   const [dashboardData, setDashboardData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -42,9 +42,9 @@ export const DashboardPage: React.FC = () => {
     : "FP";
 
   const locationLabel = farmerProfile?.village
-    ? `${farmerProfile.village}, ${farmerProfile.district}, ${farmerProfile.state}`
+    ? translateLocation(`${farmerProfile.village}, ${farmerProfile.district}, ${farmerProfile.state}`)
     : dashboardData?.farmer?.village
-    ? `${dashboardData.farmer.village}, ${dashboardData.farmer.taluka}, ${dashboardData.farmer.district}, ${dashboardData.farmer.state}`
+    ? translateLocation(`${dashboardData.farmer.village}, ${dashboardData.farmer.taluka}, ${dashboardData.farmer.district}, ${dashboardData.farmer.state}`)
     : t("farmerLocation");
 
   const cards = dashboardData?.farmerDashboardCards;
@@ -61,13 +61,13 @@ export const DashboardPage: React.FC = () => {
         <div className="mb-6 p-4 rounded-2xl bg-amber-50/80 border border-amber-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-amber-950 font-medium animate-fade-in">
           <div className="flex items-center gap-2.5">
             <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shrink-0" />
-            <span>Complete your farm profile to personalize sugar yield models and field parameters.</span>
+            <span>{t("incompleteProfileBanner")}</span>
           </div>
           <Link
             to="/profile/setup"
             className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-black text-white text-xs font-semibold hover:bg-neutral-800 transition-colors shrink-0 shadow-xs"
           >
-            <span>Complete Profile</span>
+            <span>{t("completeProfile")}</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -93,7 +93,7 @@ export const DashboardPage: React.FC = () => {
           <button
             onClick={() => setProfileOpen(true)}
             className="group flex items-center gap-2.5 p-1.5 pr-4 rounded-full bg-white hover:bg-neutral-50 border border-[#E8E8E8] shadow-xs transition-all text-left"
-            title="View & Edit Farmer Profile"
+            title={t("myProfile")}
           >
             <div className="w-9 h-9 rounded-full bg-black text-white flex items-center justify-center font-serif text-sm font-bold shrink-0 group-hover:scale-105 transition-transform">
               {farmerInitials}
@@ -104,7 +104,7 @@ export const DashboardPage: React.FC = () => {
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
               </div>
               <div className="text-[10px] text-[#6F6F6F] leading-tight font-sans">
-                {farmerProfile?.totalAreaAcres || 10.4} Ac • {farmerProfile?.sugarcaneVariety?.split(" ")[0] || "Co 86032"}
+                {farmerProfile?.totalAreaAcres || 10.4} {t("acres")} • {farmerProfile?.sugarcaneVariety?.split(" ")[0] || "Co 86032"}
               </div>
             </div>
           </button>
@@ -287,7 +287,7 @@ export const DashboardPage: React.FC = () => {
               {t("sectionFarmDetails")}
             </h2>
             <p className="text-xs text-[#6F6F6F] mt-0.5">
-              Kasba Bawada, Kolhapur Sugar Belt (4 {t("plot")})
+              {translateLocation("Kasba Bawada, Kolhapur")} (4 {t("plot")})
             </p>
           </div>
           <Link to="/twin" className="text-xs font-medium text-black hover:underline flex items-center gap-1">

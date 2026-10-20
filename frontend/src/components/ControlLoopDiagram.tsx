@@ -1,15 +1,15 @@
 import React from "react";
-import { ArrowRight, Cpu, Radio, Shield, Sparkles, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Cpu, Radio, Shield, CheckCircle2 } from "lucide-react";
 
 export const ControlLoopDiagram: React.FC = () => {
   const steps = [
     { number: "01", name: "Physical Farm", desc: "Soil, micro-climate, crops, and sensors" },
     { number: "02", name: "Telemetry Ingestion", desc: "IoT probes, weather station, Sentinel-2" },
-    { number: "03", name: "Digital Twin", desc: "Living spatial-temporal farm replica" },
+    { number: "03", name: "Farm Model", desc: "Living spatial-temporal farm replica" },
     { number: "04", name: "ML Yield Prediction", desc: "Gradient boosting & climate attributions" },
     { number: "05", name: "Prescriptive Advice", desc: "Explainable agronomic recommendations" },
     { number: "06", name: "Farmer Confirmation", desc: "Action execution, irrigation, or snooze" },
-    { number: "07", name: "Updated Twin State", desc: "Continuous closed-loop calibration" },
+    { number: "07", name: "Updated Farm State", desc: "Continuous closed-loop calibration" },
   ];
 
   return (
@@ -22,10 +22,10 @@ export const ControlLoopDiagram: React.FC = () => {
             Architectural Paradigm
           </span>
           <h2 className="font-serif text-4xl md:text-5xl font-normal tracking-tight text-black">
-            The Closed Digital Twin Loop
+            The Closed Farm AI Loop
           </h2>
           <p className="text-sm text-[#6F6F6F] mt-3 leading-relaxed">
-            AgriVision pairs real-time physical observations with predictive models. Every farmer decision updates the twin, creating an ever-calibrating cycle of continuous learning.
+            AgriVision pairs real-time physical observations with predictive models. Every farmer decision updates the farm model, creating an ever-calibrating cycle of continuous learning.
           </p>
         </div>
 
@@ -57,14 +57,14 @@ export const ControlLoopDiagram: React.FC = () => {
           ))}
         </div>
 
-        {/* Twin Maturity Levels & Human in the loop confirmation */}
+        {/* Maturity Levels & Human in the loop confirmation */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-[#EBEBEB]">
           <div className="p-5 rounded-xl bg-white border border-[#EBEBEB]">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs uppercase tracking-wider font-mono text-[#6F6F6F]">Stage 1</span>
               <Radio className="w-4 h-4 text-neutral-500" />
             </div>
-            <h4 className="font-serif text-xl text-black mb-1">Monitoring Twin</h4>
+            <h4 className="font-serif text-xl text-black mb-1">Live Monitoring</h4>
             <p className="text-xs text-[#6F6F6F] leading-relaxed">
               Continuous live telemetry of soil moisture, surface temperature, humidity, and 10m Sentinel-2 biomass indices.
             </p>
@@ -75,7 +75,7 @@ export const ControlLoopDiagram: React.FC = () => {
               <span className="text-xs uppercase tracking-wider font-mono text-emerald-700">Stage 2 (Active)</span>
               <Cpu className="w-4 h-4 text-emerald-700" />
             </div>
-            <h4 className="font-serif text-xl text-black mb-1">Predictive Twin</h4>
+            <h4 className="font-serif text-xl text-black mb-1">Predictive AI</h4>
             <p className="text-xs text-[#6F6F6F] leading-relaxed">
               Ensemble machine learning models forecast seasonal yield, harvest timing, water stress windows, and climate risks.
             </p>
@@ -86,7 +86,7 @@ export const ControlLoopDiagram: React.FC = () => {
               <span className="text-xs uppercase tracking-wider font-mono text-black">Stage 3</span>
               <Shield className="w-4 h-4 text-black" />
             </div>
-            <h4 className="font-serif text-xl text-black mb-1">Prescriptive Twin</h4>
+            <h4 className="font-serif text-xl text-black mb-1">Prescriptive AI</h4>
             <p className="text-xs text-[#6F6F6F] leading-relaxed">
               Explainable AI formulates variable-rate irrigation, nutrient top-dressing, and harvest scheduling with farmer sign-off.
             </p>

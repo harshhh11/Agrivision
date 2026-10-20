@@ -14,31 +14,31 @@ export const HistoryPage: React.FC = () => {
   const records = [
     {
       date: "22 Sep",
-      title: "Crop Estimate Updated",
+      title: t("rec1Title"),
       expectedCropQ: 560.5,
       expectedCropT: 138.5,
-      note: "Sugarcane is growing well with adequate water and sunlight."
+      note: t("rec1Note")
     },
     {
       date: "18 Sep",
-      title: "Watering Recorded",
+      title: t("rec2Title"),
       expectedCropQ: 555.0,
       expectedCropT: 137.1,
-      note: "Plot 1 and Plot 3 watered via drip irrigation."
+      note: t("rec2Note")
     },
     {
       date: "10 Sep",
-      title: "Soil Nutrients Checked",
+      title: t("rec3Title"),
       expectedCropQ: 548.0,
       expectedCropT: 135.4,
-      note: "Nitrogen top-dressing applied to support stalk growth."
+      note: t("rec3Note")
     },
     {
       date: "01 Sep",
-      title: "Season Baseline Estimate",
+      title: t("rec4Title"),
       expectedCropQ: 535.0,
       expectedCropT: 132.2,
-      note: "Initial crop estimate at start of month."
+      note: t("rec4Note")
     }
   ];
 

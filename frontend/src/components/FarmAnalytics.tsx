@@ -12,9 +12,10 @@ import {
   Cell,
   CartesianGrid
 } from "recharts";
-import { BarChart3, PieChart as PieIcon, TrendingUp, Sparkles, Layers, ArrowUpRight } from "lucide-react";
+import { BarChart3, PieChart as PieIcon, TrendingUp, Sparkles } from "lucide-react";
 import { Field } from "../types";
 import { FarmerProfile } from "../context/AuthContext";
+import { useI18n } from "../i18n";
 
 interface FarmAnalyticsProps {
   fields: Field[];
@@ -28,14 +29,16 @@ const VARIETY_COLORS = ["#10B981", "#8B5CF6", "#F59E0B", "#EC4899", "#3B82F6"];
 export const FarmAnalytics: React.FC<FarmAnalyticsProps> = ({
   fields = [],
   farmerProfile,
-  preferredUnit = "quintals_acre"
+  preferredUnit
 }) => {
+  const { t, unit: contextUnit } = useI18n();
+  const currentUnit = preferredUnit || contextUnit || "quintals_acre";
   const [pieMode, setPieMode] = useState<"npk" | "varieties">("npk");
   const [barMetric, setBarMetric] = useState<"yield" | "area">("yield");
   const [activePieIndex, setActivePieIndex] = useState<number | null>(null);
 
-  const isQPerAcre = preferredUnit === "quintals_acre";
-  const unitLabel = isQPerAcre ? "Q/Acre" : "t/ha";
+  const isQPerAcre = currentUnit === "quintals_acre";
+  const unitLabel = isQPerAcre ? t("quintalsPerAcre") : t("tonnesPerHa");
 
   // 1. Data Preparation for Bar Chart (Field-wise Comparison)
   const barData = fields.length > 0 ? fields.map((plot, idx) => {
@@ -48,18 +51,18 @@ export const FarmAnalytics: React.FC<FarmAnalyticsProps> = ({
       : Math.round((farmerProfile?.targetYieldQAcre || 565) * 0.247105);
 
     return {
-      name: plot.code || `Plot ${idx + 1}`,
-      fullName: plot.name || `Plot ${idx + 1}`,
+      name: plot.code || `${t("plot")} ${idx + 1}`,
+      fullName: plot.name || `${t("plot")} ${idx + 1}`,
       variety: plot.cropVariety || "Co 86032",
       expectedYield: Math.round(yieldVal),
       targetYield: targetVal,
       areaAcres: plot.areaAcres || 2.5 + (idx * 0.5)
     };
   }) : [
-    { name: "PLT-01", fullName: "Plot 1 (North)", variety: "Co 86032", expectedYield: isQPerAcre ? 578 : 143, targetYield: isQPerAcre ? 565 : 140, areaAcres: 3.2 },
-    { name: "PLT-02", fullName: "Plot 2 (East)", variety: "CoM 0265", expectedYield: isQPerAcre ? 612 : 151, targetYield: isQPerAcre ? 565 : 140, areaAcres: 2.8 },
-    { name: "PLT-03", fullName: "Plot 3 (Canal)", variety: "Co 0238", expectedYield: isQPerAcre ? 545 : 135, targetYield: isQPerAcre ? 565 : 140, areaAcres: 2.4 },
-    { name: "PLT-04", fullName: "Plot 4 (South)", variety: "VSI 434", expectedYield: isQPerAcre ? 589 : 145, targetYield: isQPerAcre ? 565 : 140, areaAcres: 2.0 }
+    { name: "PLT-01", fullName: `${t("plot")} 1`, variety: "Co 86032", expectedYield: isQPerAcre ? 578 : 143, targetYield: isQPerAcre ? 565 : 140, areaAcres: 3.2 },
+    { name: "PLT-02", fullName: `${t("plot")} 2`, variety: "CoM 0265", expectedYield: isQPerAcre ? 612 : 151, targetYield: isQPerAcre ? 565 : 140, areaAcres: 2.8 },
+    { name: "PLT-03", fullName: `${t("plot")} 3`, variety: "Co 0238", expectedYield: isQPerAcre ? 545 : 135, targetYield: isQPerAcre ? 565 : 140, areaAcres: 2.4 },
+    { name: "PLT-04", fullName: `${t("plot")} 4`, variety: "VSI 434", expectedYield: isQPerAcre ? 589 : 145, targetYield: isQPerAcre ? 565 : 140, areaAcres: 2.0 }
   ];
 
   // 2. Data Preparation for Soil NPK Pie Chart
@@ -69,9 +72,9 @@ export const FarmAnalytics: React.FC<FarmAnalyticsProps> = ({
   const totalNPK = nVal + pVal + kVal;
 
   const npkPieData = [
-    { name: "Nitrogen (N)", value: nVal, unit: "kg/ha", pct: Math.round((nVal / totalNPK) * 100), desc: "Vegetative & stalk growth" },
-    { name: "Phosphorus (P)", value: pVal, unit: "kg/ha", pct: Math.round((pVal / totalNPK) * 100), desc: "Root network & tillering" },
-    { name: "Potassium (K)", value: kVal, unit: "kg/ha", pct: Math.round((kVal / totalNPK) * 100), desc: "Brix sugar accumulation" }
+    { name: t("nitrogenN"), value: nVal, unit: "kg/ha", pct: Math.round((nVal / totalNPK) * 100), desc: t("vegetativeStalkGrowth") },
+    { name: t("phosphorusP"), value: pVal, unit: "kg/ha", pct: Math.round((pVal / totalNPK) * 100), desc: t("rootNetworkTillering") },
+    { name: t("potassiumK"), value: kVal, unit: "kg/ha", pct: Math.round((kVal / totalNPK) * 100), desc: t("brixSugarAccumulation") }
   ];
 
   // 3. Data Preparation for Variety Allocation Pie Chart
@@ -92,9 +95,9 @@ export const FarmAnalytics: React.FC<FarmAnalyticsProps> = ({
   const varietyPieData = Object.entries(varietyMap).map(([name, acres]) => ({
     name,
     value: parseFloat(acres.toFixed(1)),
-    unit: "Acres",
+    unit: t("acres"),
     pct: Math.round((acres / totalArea) * 100),
-    desc: `${acres.toFixed(1)} Acres allocated`
+    desc: `${acres.toFixed(1)} ${t("acresAllocated")}`
   }));
 
   const activePieData = pieMode === "npk" ? npkPieData : varietyPieData;
@@ -108,21 +111,21 @@ export const FarmAnalytics: React.FC<FarmAnalyticsProps> = ({
           <div className="flex items-center gap-2 mb-1.5 text-xs text-[#6F6F6F]">
             <Sparkles className="w-3.5 h-3.5 text-amber-500" />
             <span className="font-semibold uppercase tracking-wider text-[11px] text-neutral-600">
-              Interactive Farm Analytics & AI Charts
+              {t("analyticsBadge")}
             </span>
           </div>
           <h2 className="text-xl md:text-2xl font-semibold text-black tracking-tight">
-            Crop Performance & Soil Nutrient Intelligence
+            {t("analyticsTitle")}
           </h2>
           <p className="text-xs text-[#6F6F6F] mt-1">
-            Real-time digital twin analytics comparing field-wise sugarcane forecasts and agronomic input ratios.
+            {t("analyticsSubtitle")}
           </p>
         </div>
 
         {/* Quick Insight Pill */}
         <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 font-medium self-start md:self-end">
           <TrendingUp className="w-3.5 h-3.5 text-emerald-600" />
-          <span>Average Forecast: <strong>+{isQPerAcre ? "14.2 Q/Acre" : "3.5 t/ha"}</strong> above benchmark</span>
+          <span>{t("avgForecast")}: <strong>+{isQPerAcre ? `14.2 ${t("quintalsPerAcre")}` : `3.5 ${t("tonnesPerHa")}`}</strong> {t("aboveBenchmark")}</span>
         </div>
       </div>
 
@@ -142,10 +145,10 @@ export const FarmAnalytics: React.FC<FarmAnalyticsProps> = ({
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-black leading-tight">
-                    Plot-wise Sugarcane Yield
+                    {t("plotWiseSugarcaneYield")}
                   </h3>
                   <span className="text-[11px] text-[#6F6F6F]">
-                    Expected ML Prediction vs Farmer Target ({unitLabel})
+                    {t("expectedVsTarget")} ({unitLabel})
                   </span>
                 </div>
               </div>
@@ -161,7 +164,7 @@ export const FarmAnalytics: React.FC<FarmAnalyticsProps> = ({
                       : "text-[#6F6F6F] hover:text-black"
                   }`}
                 >
-                  Yield ({unitLabel})
+                  {t("yieldLabel")} ({unitLabel})
                 </button>
                 <button
                   type="button"
@@ -172,7 +175,7 @@ export const FarmAnalytics: React.FC<FarmAnalyticsProps> = ({
                       : "text-[#6F6F6F] hover:text-black"
                   }`}
                 >
-                  Area (Acres)
+                  {t("areaLabel")} ({t("acres")})
                 </button>
               </div>
             </div>
@@ -207,15 +210,15 @@ export const FarmAnalytics: React.FC<FarmAnalyticsProps> = ({
                             {barMetric === "yield" ? (
                               <>
                                 <div className="flex items-center justify-between gap-3 pt-0.5">
-                                  <span className="text-neutral-400">Expected Yield:</span>
+                                  <span className="text-neutral-400">{t("expectedYieldChartName")}:</span>
                                   <span className="font-bold text-emerald-400">{data.expectedYield} {unitLabel}</span>
                                 </div>
                                 <div className="flex items-center justify-between gap-3">
-                                  <span className="text-neutral-400">Target Benchmark:</span>
+                                  <span className="text-neutral-400">{t("targetYieldChartName")}:</span>
                                   <span className="text-neutral-200">{data.targetYield} {unitLabel}</span>
                                 </div>
                                 <div className="text-[10px] text-neutral-400 pt-1 border-t border-neutral-800">
-                                  Variance:{" "}
+                                  {t("varianceLabel")}:{" "}
                                   <strong className={data.expectedYield >= data.targetYield ? "text-emerald-400" : "text-amber-400"}>
                                     {data.expectedYield >= data.targetYield ? "+" : ""}
                                     {(data.expectedYield - data.targetYield).toFixed(0)} {unitLabel}
@@ -224,8 +227,8 @@ export const FarmAnalytics: React.FC<FarmAnalyticsProps> = ({
                               </>
                             ) : (
                               <div className="flex items-center justify-between gap-3 pt-0.5">
-                                <span className="text-neutral-400">Cultivated Area:</span>
-                                <span className="font-bold text-emerald-400">{data.areaAcres} Acres</span>
+                                <span className="text-neutral-400">{t("cultivatedAreaChartName")}:</span>
+                                <span className="font-bold text-emerald-400">{data.areaAcres} {t("acres")}</span>
                               </div>
                             )}
                           </div>
@@ -241,14 +244,14 @@ export const FarmAnalytics: React.FC<FarmAnalyticsProps> = ({
                   {barMetric === "yield" ? (
                     <>
                       <Bar
-                        name={`Expected Yield (${unitLabel})`}
+                        name={`${t("expectedYieldChartName")} (${unitLabel})`}
                         dataKey="expectedYield"
                         fill="#10B981"
                         radius={[6, 6, 0, 0]}
                         animationDuration={1000}
                       />
                       <Bar
-                        name={`Target Yield (${unitLabel})`}
+                        name={`${t("targetYieldChartName")} (${unitLabel})`}
                         dataKey="targetYield"
                         fill="#94A3B8"
                         radius={[6, 6, 0, 0]}
@@ -257,7 +260,7 @@ export const FarmAnalytics: React.FC<FarmAnalyticsProps> = ({
                     </>
                   ) : (
                     <Bar
-                      name="Cultivated Area (Acres)"
+                      name={`${t("cultivatedAreaChartName")} (${t("acres")})`}
                       dataKey="areaAcres"
                       fill="#0EA5E9"
                       radius={[6, 6, 0, 0]}
@@ -271,8 +274,8 @@ export const FarmAnalytics: React.FC<FarmAnalyticsProps> = ({
 
           {/* Bar Chart Footer Note */}
           <div className="pt-3 border-t border-[#F2F2F2] flex items-center justify-between text-[11px] text-[#6F6F6F]">
-            <span>💡 Plot 2 (CoM 0265) leads yield forecasts due to optimal tillering density.</span>
-            <span className="font-medium text-black">Updated Live</span>
+            <span>{t("analyticsLeadNote")}</span>
+            <span className="font-medium text-black">{t("updatedLive")}</span>
           </div>
         </div>
 
@@ -289,10 +292,10 @@ export const FarmAnalytics: React.FC<FarmAnalyticsProps> = ({
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold text-black leading-tight">
-                    {pieMode === "npk" ? "Soil Nutrient (NPK) Ratio" : "Sugarcane Variety Allocation"}
+                    {pieMode === "npk" ? t("soilNPKRatio") : t("sugarcaneVarietyAllocation")}
                   </h3>
                   <span className="text-[11px] text-[#6F6F6F]">
-                    {pieMode === "npk" ? "Fertilizer distribution (kg/ha)" : "Acreage per cane cultivar"}
+                    {pieMode === "npk" ? t("fertilizerDistribution") : t("acreagePerCultivar")}
                   </span>
                 </div>
               </div>
@@ -319,7 +322,7 @@ export const FarmAnalytics: React.FC<FarmAnalyticsProps> = ({
                       : "text-[#6F6F6F] hover:text-black"
                   }`}
                 >
-                  Varieties
+                  {t("varietiesLabel")}
                 </button>
               </div>
             </div>
@@ -373,10 +376,10 @@ export const FarmAnalytics: React.FC<FarmAnalyticsProps> = ({
               {/* Center Donut Label */}
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                 <span className="text-[10px] uppercase font-semibold text-neutral-400 tracking-wider">
-                  {pieMode === "npk" ? "Total NPK" : "Total Area"}
+                  {pieMode === "npk" ? t("totalNPK") : t("totalAreaLabel")}
                 </span>
                 <span className="text-lg font-bold text-black leading-tight">
-                  {pieMode === "npk" ? `${totalNPK} kg` : `${totalArea.toFixed(1)} Ac`}
+                  {pieMode === "npk" ? `${totalNPK} kg` : `${totalArea.toFixed(1)} ${t("acres")}`}
                 </span>
               </div>
             </div>
@@ -417,8 +420,8 @@ export const FarmAnalytics: React.FC<FarmAnalyticsProps> = ({
 
           {/* Pie Chart Footer Note */}
           <div className="pt-3 border-t border-[#F2F2F2] flex items-center justify-between text-[11px] text-[#6F6F6F]">
-            <span>🎯 Maharashtra VSI Target NPK ratio: <strong>3 : 1 : 2</strong></span>
-            <span className="text-emerald-700 font-semibold">Optimal</span>
+            <span>🎯 {t("vsiTargetRatio")}: <strong>3 : 1 : 2</strong></span>
+            <span className="text-emerald-700 font-semibold">{t("optimalLabel")}</span>
           </div>
         </div>
 

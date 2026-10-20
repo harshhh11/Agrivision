@@ -177,7 +177,7 @@ export const DataQualityPage: React.FC = () => {
           <div>
             <h4 className="font-medium text-black mb-1.5">3. Human-in-the-Loop Sovereign Control</h4>
             <p>
-              AgriVision is structured as a prescriptive digital twin. No physical machinery (valves, pivots, seeders) will ever be triggered autonomously without explicit confirmation by the farmer.
+              AgriVision is structured as a prescriptive agricultural platform. No physical machinery (valves, pivots, seeders) will ever be triggered autonomously without explicit confirmation by the farmer.
             </p>
           </div>
         </div>

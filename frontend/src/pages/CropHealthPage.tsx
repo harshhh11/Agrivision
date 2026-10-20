@@ -21,7 +21,7 @@ const healthTrendData = [
 
 export const CropHealthPage: React.FC = () => {
   const { fields, selectedField, setSelectedField } = useFarm();
-  const { t, formatArea } = useI18n();
+  const { t, formatArea, translateFrequency } = useI18n();
   const activePlot = selectedField || fields[0] || null;
 
   const stages = [
@@ -77,10 +77,10 @@ export const CropHealthPage: React.FC = () => {
             {t("valGood")}
           </div>
           <p className="text-xs text-[#6F6F6F] mt-2 leading-relaxed">
-            Healthy green leaf canopy.
+            {t("cropGreennessDesc")}
           </p>
           <span className="text-[11px] text-neutral-400 font-mono mt-3 block">
-            NDVI: 0.84 • Demo Preview
+            NDVI: 0.84 • {t("demoBadge")}
           </span>
         </div>
 
@@ -94,7 +94,7 @@ export const CropHealthPage: React.FC = () => {
             {activePlot?.cropDurationMonths || 14} {t("optDuration")} ({activePlot?.cropVariety})
           </p>
           <span className="text-[11px] text-neutral-400 mt-3 block">
-            Stalk forming & cane height growing
+            {t("stageGrowthDesc")}
           </span>
         </div>
 
@@ -105,10 +105,10 @@ export const CropHealthPage: React.FC = () => {
             {t("valAdequate")}
           </div>
           <p className="text-xs text-[#6F6F6F] mt-2 leading-relaxed">
-            35.2% root-zone moisture ({activePlot?.irrigationFrequency})
+            35.2% {t("rootZoneMoisture")} ({translateFrequency(activePlot?.irrigationFrequency || "2 times/week")})
           </p>
           <span className="text-[11px] text-neutral-400 mt-3 block">
-            Roots have sufficient moisture
+            {t("rootMoistureSufficient")}
           </span>
         </div>
 
@@ -119,10 +119,10 @@ export const CropHealthPage: React.FC = () => {
             29.5°C • 8.4 hrs
           </div>
           <p className="text-xs text-[#6F6F6F] mt-2 leading-relaxed">
-            Optimal sunshine for cane growth
+            {t("optimalSunshine")}
           </p>
           <span className="text-[11px] text-neutral-400 mt-3 block">
-            Maharashtra Agro-Climatic Zone
+            {t("agroClimaticZone")}
           </span>
         </div>
 
@@ -136,7 +136,7 @@ export const CropHealthPage: React.FC = () => {
           {t("cropStage")}
         </h2>
         <p className="text-xs text-[#6F6F6F] mb-6">
-          Your sugarcane is currently in the active stalk development stage.
+          {t("caneActiveStalkStage")}
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">

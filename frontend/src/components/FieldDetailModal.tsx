@@ -178,12 +178,12 @@ export const FieldDetailModal: React.FC<FieldDetailModalProps> = ({ field, onClo
                   onChange={(e) => setDuration(Number(e.target.value))}
                   className="w-full text-xs p-2.5 rounded-xl border border-[#EBEBEB] bg-neutral-50 text-black font-medium focus:outline-none focus:border-black"
                 >
-                  <option value={10}>10 Months</option>
-                  <option value={11}>11 Months (Ratoon)</option>
-                  <option value={12}>12 Months (Suru)</option>
-                  <option value={14}>14 Months (Pre-seasonal)</option>
-                  <option value={16}>16 Months (Adsali)</option>
-                  <option value={18}>18 Months</option>
+                  <option value={10}>10 {t("caneDurationMonths")}</option>
+                  <option value={11}>11 {t("caneDurationMonths")} ({t("ratoonCrop")})</option>
+                  <option value={12}>12 {t("caneDurationMonths")} ({t("suruCrop")})</option>
+                  <option value={14}>14 {t("caneDurationMonths")} ({t("preSeasonalCrop")})</option>
+                  <option value={16}>16 {t("caneDurationMonths")} ({t("adsaliCrop")})</option>
+                  <option value={18}>18 {t("caneDurationMonths")}</option>
                 </select>
               </div>
             </div>
@@ -195,16 +195,16 @@ export const FieldDetailModal: React.FC<FieldDetailModalProps> = ({ field, onClo
               2. {t("cardSoilStatus")} (N-P-K)
             </label>
             <div>
-              <span className="text-xs text-[#6F6F6F] block mb-1">Soil Type</span>
+              <span className="text-xs text-[#6F6F6F] block mb-1">{t("labelSoilType")}</span>
               <select
                 value={soilType}
                 onChange={(e) => setSoilType(e.target.value)}
                 className="w-full text-xs p-2.5 rounded-xl border border-[#EBEBEB] bg-neutral-50 text-black font-medium focus:outline-none focus:border-black"
               >
-                <option value="Black Soil">Black Soil (काळी माती / Regur)</option>
-                <option value="Clay Loam">Clay Loam</option>
-                <option value="Alluvial">Alluvial</option>
-                <option value="Red Soil">Red Soil</option>
+                <option value="Black Soil">{t("soilBlack")}</option>
+                <option value="Clay Loam">{t("soilClayLoam")}</option>
+                <option value="Alluvial">{t("soilAlluvial")}</option>
+                <option value="Red Soil">{t("soilRedLoam")}</option>
               </select>
             </div>
 
@@ -286,9 +286,9 @@ export const FieldDetailModal: React.FC<FieldDetailModalProps> = ({ field, onClo
                   onChange={(e) => setPestControl(e.target.value)}
                   className="w-full text-xs p-2.5 rounded-xl border border-[#EBEBEB] bg-neutral-50 text-black font-medium focus:outline-none focus:border-black"
                 >
-                  <option value="Integrated">Integrated (IPM)</option>
-                  <option value="Biological">Biological Biocontrol</option>
-                  <option value="Chemical">Chemical Control</option>
+                  <option value="Integrated">{t("pestIntegrated")}</option>
+                  <option value="Biological">{t("pestBiological")}</option>
+                  <option value="Chemical">{t("pestChemical")}</option>
                 </select>
               </div>
             </div>

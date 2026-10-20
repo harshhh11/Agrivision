@@ -326,7 +326,7 @@ export const SimulationPage: React.FC = () => {
               {t("optDuration")}
             </h3>
             <p className="text-xs text-[#6F6F6F] mb-6">
-              Sugarcane duration: <strong className="text-black">{duration} Months</strong> (Suru / Adsali)
+              {t("sugarcaneCrop")} {t("optDuration")}: <strong className="text-black">{duration} {t("caneDurationMonths")}</strong> ({t("suruCrop")} / {t("adsaliCrop")})
             </p>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -341,7 +341,7 @@ export const SimulationPage: React.FC = () => {
                   }`}
                 >
                   <span className="text-base font-bold block">{m}</span>
-                  <span className="text-xs text-[#888888]">{m === 16 ? "Adsali" : m === 12 ? "Suru" : "Pre-seasonal"}</span>
+                  <span className="text-xs text-[#888888]">{m === 16 ? t("adsaliCrop") : m === 12 ? t("suruCrop") : t("preSeasonalCrop")}</span>
                 </button>
               ))}
             </div>
@@ -355,14 +355,14 @@ export const SimulationPage: React.FC = () => {
               {t("optPest")}
             </h3>
             <p className="text-xs text-[#6F6F6F] mb-6">
-              Current practice: <strong className="text-black">{pestControl}</strong>
+              {t("factorPest")}: <strong className="text-black">{pestControl === "Integrated" ? t("pestIntegrated") : pestControl === "Biological" ? t("pestBiological") : t("pestChemical")}</strong>
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
-                { val: "Integrated", label: "Integrated (IPM)", desc: "Biological + Targeted minimal chemical" },
-                { val: "Biological", label: "Biological Only", desc: "Trichogramma wasps + bio-agents" },
-                { val: "Chemical", label: "Standard Chemical", desc: "Conventional spray schedule" },
+                { val: "Integrated", label: t("pestIntegrated"), desc: t("pestIntegratedDesc") },
+                { val: "Biological", label: t("pestBiological"), desc: t("pestBioDesc") },
+                { val: "Chemical", label: t("pestChemical"), desc: t("pestChemDesc") },
               ].map((p) => (
                 <button
                   key={p.val}

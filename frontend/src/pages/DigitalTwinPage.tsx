@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 export const DigitalTwinPage: React.FC = () => {
   const { farm, fields, selectedField, setSelectedField } = useFarm();
-  const { t, formatYield, formatArea } = useI18n();
+  const { t, formatYield, formatArea, translateCropStage, translateSoilType, translateFrequency } = useI18n();
   const [activeInspectorField, setActiveInspectorField] = useState<Field | null>(null);
 
   const activeField = selectedField || fields[0] || null;
@@ -129,7 +129,7 @@ export const DigitalTwinPage: React.FC = () => {
                   <div className="p-3 rounded-xl bg-neutral-50 border border-[#EBEBEB]">
                     <span className="text-[10px] font-medium text-[#777777] uppercase block">{t("cropGrowth")}</span>
                     <span className="font-semibold text-neutral-900 mt-0.5 block truncate">
-                      {activeField.cropStage || "Grand Growth"}
+                      {translateCropStage(activeField.cropStage || "Grand Growth")}
                     </span>
                   </div>
 
@@ -137,7 +137,7 @@ export const DigitalTwinPage: React.FC = () => {
                   <div className="p-3 rounded-xl bg-neutral-50 border border-[#EBEBEB]">
                     <span className="text-[10px] font-medium text-[#777777] uppercase block">{t("cardWaterStatus")}</span>
                     <span className="font-semibold text-neutral-900 mt-0.5 block truncate">
-                      {activeField.irrigationFrequency || "3 times/week"}
+                      {translateFrequency(activeField.irrigationFrequency || "3 times/week")}
                     </span>
                   </div>
 
@@ -145,7 +145,7 @@ export const DigitalTwinPage: React.FC = () => {
                   <div className="p-3 rounded-xl bg-neutral-50 border border-[#EBEBEB]">
                     <span className="text-[10px] font-medium text-[#777777] uppercase block">{t("cardSoilStatus")}</span>
                     <span className="font-semibold text-neutral-900 mt-0.5 block truncate">
-                      {activeField.soilType || "Black Soil"}
+                      {translateSoilType(activeField.soilType || "Black Soil")}
                     </span>
                   </div>
 
@@ -175,15 +175,15 @@ export const DigitalTwinPage: React.FC = () => {
                   </span>
                   <div className="grid grid-cols-3 gap-2 text-center pt-1 border-t border-neutral-200/60">
                     <div>
-                      <span className="text-[10px] text-[#666666] block">Rain</span>
+                      <span className="text-[10px] text-[#666666] block">{t("factorRain")}</span>
                       <span className="font-mono font-semibold text-neutral-900">{activeField.rainfallMm || 1280} mm</span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-[#666666] block">Temp</span>
+                      <span className="text-[10px] text-[#666666] block">{t("factorTemp")}</span>
                       <span className="font-mono font-semibold text-neutral-900">{activeField.temperatureC || 29.5}°C</span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-[#666666] block">Sun</span>
+                      <span className="text-[10px] text-[#666666] block">{t("optSunlight")}</span>
                       <span className="font-mono font-semibold text-neutral-900">{activeField.dailySunlightHours || 8.4}h</span>
                     </div>
                   </div>
@@ -191,7 +191,7 @@ export const DigitalTwinPage: React.FC = () => {
               </>
             ) : (
               <div className="py-12 text-center text-xs text-[#6F6F6F]">
-                Click any sugarcane plot on the map to inspect details.
+                {t("clickPlotInspect")}
               </div>
             )}
           </div>

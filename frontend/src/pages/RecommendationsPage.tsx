@@ -25,7 +25,7 @@ export const RecommendationsPage: React.FC = () => {
       why: t("actionWaterWhy"),
       whatToCheck: t("actionWaterCheck"),
       link: "/water",
-      linkText: "Water status"
+      linkText: t("actionWaterLink")
     },
     {
       id: "soil",
@@ -36,7 +36,7 @@ export const RecommendationsPage: React.FC = () => {
       why: t("actionSoilWhy"),
       whatToCheck: t("actionSoilCheck"),
       link: "/soil",
-      linkText: "Soil details"
+      linkText: t("actionSoilLink")
     },
     {
       id: "pest",
@@ -47,7 +47,7 @@ export const RecommendationsPage: React.FC = () => {
       why: t("actionPestWhy"),
       whatToCheck: t("actionPestCheck"),
       link: "/crop-health",
-      linkText: "Crop condition"
+      linkText: t("actionPestLink")
     }
   ];
 
