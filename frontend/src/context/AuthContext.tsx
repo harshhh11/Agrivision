@@ -91,6 +91,8 @@ interface AuthContextType {
   isAuthenticated: boolean;
   isDemoMode: boolean;
   isLoading: boolean;
+  authError: string | null;
+  clearAuthError: () => void;
   login: (identifier: string, password?: string) => Promise<boolean>;
   signup: (name: string, email: string, password: string, phone?: string) => Promise<boolean>;
   register: (name: string, email: string, password: string, phone?: string, extraParams?: Partial<FarmerProfile>) => Promise<boolean>;
@@ -107,6 +109,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return localStorage.getItem("agrivision_demo_mode") === "true";
   });
   const [isLoading, setIsLoading] = useState(true);
+  const [authError, setAuthError] = useState<string | null>(null);
+  const clearAuthError = () => setAuthError(null);
 
   // Initialize farmer profile from localStorage or default
   const [farmerProfile, setFarmerProfile] = useState<FarmerProfile>(() => {
@@ -122,15 +126,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
 
   const [user, setUser] = useState<User | null>(() => {
+    const savedToken = localStorage.getItem("agrivision_token") || localStorage.getItem("agritwin_token");
     const savedUser = localStorage.getItem("agrivision_user");
-    if (savedUser) {
+    if (savedToken && savedUser) {
       try {
         return JSON.parse(savedUser);
       } catch (e) {
         // ignore
       }
     }
-    if (isDemoMode) {
+    if (localStorage.getItem("agrivision_demo_mode") === "true") {
       return {
         id: "demo-farmer",
         name: DEFAULT_FARMER_PROFILE.name,
@@ -224,9 +229,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const login = async (identifier: string, password?: string): Promise<boolean> => {
+    setAuthError(null);
     try {
       const isEmail = identifier.includes("@");
-      const payload: any = isEmail ? { email: identifier } : { phone: identifier };
+      const payload: any = isEmail ? { email: identifier.trim() } : { phone: identifier.trim() };
       if (password) payload.password = password;
 
       const res = await api.login(payload);
@@ -247,30 +253,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
         return true;
       }
+      setAuthError("Login failed. Please verify your credentials.");
       return false;
     } catch (err: any) {
-      // Offline fallback for demo & resilience
-      const fallbackUser: User = {
-        id: `farmer-${Date.now()}`,
-        name: identifier.includes("@") ? identifier.split("@")[0].replace(".", " ") : "Farmer " + identifier.slice(-4),
-        email: identifier.includes("@") ? identifier : `${identifier}@farmer.in`,
-        phone: identifier.includes("@") ? "" : identifier,
-        role: "farmer"
-      };
-      setUser(fallbackUser);
-      localStorage.setItem("agrivision_user", JSON.stringify(fallbackUser));
-      setIsDemoMode(false);
-      localStorage.removeItem("agrivision_demo_mode");
-      updateFarmerProfile({
-        name: fallbackUser.name,
-        email: fallbackUser.email,
-        phone: fallbackUser.phone
-      });
-      return true;
+      const errMsg = err?.response?.data?.message || "Invalid credentials. Please verify your mobile number / email and password.";
+      setAuthError(errMsg);
+      console.warn("Login rejected by backend:", errMsg);
+      return false;
     }
   };
 
   const signup = async (name: string, email: string, password: string, phone?: string): Promise<boolean> => {
+    setAuthError(null);
     try {
       const res = await api.signup({ name, email, password, phone });
       if (res.data?.token) {
@@ -278,46 +272,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setToken(res.data.token);
         setUser(res.data.user);
         localStorage.setItem("agrivision_user", JSON.stringify(res.data.user));
-      } else {
-        const newUser: User = {
-          id: `farmer-${Date.now()}`,
+        setIsDemoMode(false);
+        localStorage.removeItem("agrivision_demo_mode");
+        
+        updateFarmerProfile({
           name,
           email,
-          phone,
-          role: "farmer"
-        };
-        setUser(newUser);
-        localStorage.setItem("agrivision_user", JSON.stringify(newUser));
+          phone: phone || "",
+          isProfileComplete: false
+        });
+        return true;
       }
-      setIsDemoMode(false);
-      localStorage.removeItem("agrivision_demo_mode");
-      
-      updateFarmerProfile({
-        name,
-        email,
-        phone: phone || "",
-        isProfileComplete: false
-      });
-      return true;
+      setAuthError("Could not create account.");
+      return false;
     } catch (err: any) {
-      const newUser: User = {
-        id: `farmer-${Date.now()}`,
-        name,
-        email,
-        phone,
-        role: "farmer"
-      };
-      setUser(newUser);
-      localStorage.setItem("agrivision_user", JSON.stringify(newUser));
-      setIsDemoMode(false);
-      localStorage.removeItem("agrivision_demo_mode");
-      updateFarmerProfile({
-        name,
-        email,
-        phone: phone || "",
-        isProfileComplete: false
-      });
-      return true;
+      const errMsg = err?.response?.data?.message || "Could not create account. Please try a different email or mobile number.";
+      setAuthError(errMsg);
+      console.warn("Signup rejected by backend:", errMsg);
+      return false;
     }
   };
 
@@ -361,9 +333,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         user,
         farmerProfile,
         token,
-        isAuthenticated: !!user || isDemoMode,
+        isAuthenticated: (!!user && !!token) || isDemoMode,
         isDemoMode,
         isLoading,
+        authError,
+        clearAuthError,
         login,
         signup,
         register,

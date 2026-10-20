@@ -10,20 +10,41 @@ export async function register(req: Request, res: Response) {
       return res.status(400).json({ message: "Name, email, and password are required" });
     }
 
-    const existing = await User.findOne({ email: email.toLowerCase() });
-    if (existing) {
+    const cleanEmail = email.toLowerCase().trim();
+    const cleanPhone = phone ? phone.trim() : undefined;
+
+    const existingEmail = await User.findOne({ email: cleanEmail });
+    if (existingEmail) {
       return res.status(400).json({ message: "User with this email already exists" });
+    }
+
+    if (cleanPhone) {
+      const existingPhone = await User.findOne({ phone: cleanPhone });
+      if (existingPhone) {
+        return res.status(400).json({ message: "User with this mobile number already exists" });
+      }
     }
 
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
 
     const user = await User.create({
-      name,
-      email: email.toLowerCase(),
+      name: name.trim(),
+      email: cleanEmail,
       passwordHash,
       role: "farmer",
-      phone
+      phone: cleanPhone
+    });
+
+    // Automatically create linked Farmer record
+    await Farmer.create({
+      userId: user._id,
+      fullName: user.name,
+      mobileNumber: cleanPhone || "",
+      state: "Maharashtra",
+      district: "Kolhapur",
+      taluka: "Karveer",
+      village: "Kasba Bawada"
     });
 
     const token = generateToken(user._id.toString(), user.email);
@@ -35,6 +56,7 @@ export async function register(req: Request, res: Response) {
         id: user._id,
         name: user.name,
         email: user.email,
+        phone: user.phone,
         role: user.role
       }
     });
@@ -45,25 +67,30 @@ export async function register(req: Request, res: Response) {
 
 export async function login(req: Request, res: Response) {
   try {
-    const { email, password } = req.body;
-    if (!email || !password) {
+    const identifier = (req.body.email || req.body.phone || req.body.identifier || "").toString().trim();
+    const { password } = req.body;
+    if (!identifier || !password) {
       return res.status(400).json({ message: "Email or mobile number and password are required" });
     }
 
-    const cleanIdentifier = email.trim();
-    const user = await User.findOne({
-      $or: [
-        { email: cleanIdentifier.toLowerCase() },
-        { phone: cleanIdentifier }
-      ]
-    });
+    const cleanDigits = identifier.replace(/[^0-9]/g, "");
+    const searchConditions: any[] = [
+      { email: identifier.toLowerCase() },
+      { phone: identifier }
+    ];
+    if (cleanDigits.length >= 10) {
+      const last10 = cleanDigits.slice(-10);
+      searchConditions.push({ phone: { $regex: last10 } });
+    }
+
+    const user = await User.findOne({ $or: searchConditions });
     if (!user) {
-      return res.status(401).json({ message: "Invalid credentials" });
+      return res.status(401).json({ message: "Account not found. Please register or check credentials." });
     }
 
     const isMatch = await bcrypt.compare(password, user.passwordHash);
     if (!isMatch) {
-      return res.status(401).json({ message: "Invalid credentials" });
+      return res.status(401).json({ message: "Incorrect password. Please try again." });
     }
 
     const token = generateToken(user._id.toString(), user.email);
@@ -76,6 +103,7 @@ export async function login(req: Request, res: Response) {
         id: user._id,
         name: user.name,
         email: user.email,
+        phone: user.phone,
         role: user.role
       },
       farmId: farm ? farm._id : null

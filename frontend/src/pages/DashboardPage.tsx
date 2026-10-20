@@ -5,6 +5,7 @@ import { useFarm } from "../context/FarmContext";
 import { useI18n } from "../i18n";
 import { api } from "../services/api";
 import { FarmerProfileModal } from "../components/FarmerProfileModal";
+import { FarmAnalytics } from "../components/FarmAnalytics";
 import {
   Sprout, TrendingUp, Droplets, AlertTriangle, ShieldCheck,
   ArrowRight, Sliders, CheckCircle2, ChevronRight, Layers,
@@ -199,6 +200,15 @@ export const DashboardPage: React.FC = () => {
         </Link>
 
       </div>
+
+      {/* ==================================================
+          SECTION: INTERACTIVE FARM ANALYTICS & CHARTS
+          ================================================== */}
+      <FarmAnalytics
+        fields={fields}
+        farmerProfile={farmerProfile}
+        preferredUnit={(user as any)?.preferredUnit || "quintals_acre"}
+      />
 
       {/* ==================================================
           SECTION: WHAT SHOULD I DO? (Practical Farmer Checklist)

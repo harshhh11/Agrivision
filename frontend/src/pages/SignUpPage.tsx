@@ -6,7 +6,7 @@ import { ArrowRight, Lock, Mail, User, Phone, Eye, EyeOff, ArrowLeft } from "luc
 
 export const SignUpPage: React.FC = () => {
   const navigate = useNavigate();
-  const { signup } = useAuth();
+  const { signup, authError } = useAuth();
   const { t } = useI18n();
 
   const [fullName, setFullName] = useState("");
@@ -17,6 +17,12 @@ export const SignUpPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (authError) {
+      setError(authError);
+    }
+  }, [authError]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,7 +50,7 @@ export const SignUpPage: React.FC = () => {
       // Direct immediately to the 5-step Profile Setup flow
       navigate("/profile/setup");
     } else {
-      setError("Could not create account. Please try a different email or mobile number.");
+      setError(authError || "Could not create account. Please try a different email or mobile number.");
     }
   };
 

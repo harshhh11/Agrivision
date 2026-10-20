@@ -7,7 +7,7 @@ import { ArrowRight, Lock, Mail, Phone, Eye, EyeOff, Sparkles, ArrowLeft } from 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { login, enterDemoMode } = useAuth();
+  const { login, enterDemoMode, authError } = useAuth();
   const { t, language } = useI18n();
 
   const [identifier, setIdentifier] = useState("");
@@ -15,6 +15,12 @@ export const LoginPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (authError) {
+      setError(authError);
+    }
+  }, [authError]);
 
   // Return to intended page if protected route triggered redirect
   const from = (location.state as any)?.from?.pathname || "/farm";
@@ -34,7 +40,7 @@ export const LoginPage: React.FC = () => {
     if (success) {
       navigate(from, { replace: true });
     } else {
-      setError("Invalid credentials. Please verify your mobile number / email and password.");
+      setError(authError || "Invalid credentials. Please verify your mobile number / email and password.");
     }
   };
 
