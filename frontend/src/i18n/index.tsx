@@ -1365,6 +1365,458 @@ export const translations: TranslationDictionary = {
     ta: "எதிர்பார்க்கப்படும் மகசூல்",
     pa: "ਅਨੁਮਾਨਿਤ ਝਾੜ"
   },
+
+  // Farmer Profile & Parameters Modal
+  verifiedTwinFarmer: {
+    en: "VERIFIED TWIN FARMER",
+    hi: "सत्यापित ट्विन किसान",
+    mr: "प्रमाणित ट्विन शेतकरी",
+    gu: "ચકાસાયેલ ટ્વિન ખેડૂત",
+    kn: "ದೃಢೀಕರಿಸಿದ ಟ್ವಿನ್ ರೈತ",
+    te: "ధృవీకరించబడిన ట్విన్ రైతు",
+    ta: "சரிபார்க்கப்பட்ட இரட்டை விவசாயி",
+    pa: "ਪ੍ਰਮਾਣਿਤ ਟਵਿਨ ਕਿਸਾਨ"
+  },
+  farmTwinOverview: {
+    en: "Farm Twin Overview",
+    hi: "खेत ट्विन विवरण",
+    mr: "शेत ट्विन विहंगावलोकन",
+    gu: "ખેતર ટ્વિન ઝાંખી",
+    kn: "ಹೊಲದ ಟ್ವಿನ್ ಅವಲೋಕನ",
+    te: "పొలం ట్విన్ అవలోకనం",
+    ta: "பண்ணை இரட்டை கண்ணோட்டம்",
+    pa: "ਖੇਤ ਟਵਿਨ ਸੰਖੇਪ"
+  },
+  editParameters: {
+    en: "Edit Parameters",
+    hi: "मापदंड बदलें",
+    mr: "मापदंड बदला",
+    gu: "માપદંડ સુધારો",
+    kn: "ಪ್ಯಾರಾಮೀಟರ್‌ಗಳನ್ನು ತಿದ್ದಿ",
+    te: "పారామితులను సవరించండి",
+    ta: "அளவீடுகளைத் திருத்து",
+    pa: "ਮਾਪਦੰਡ ਬਦਲੋ"
+  },
+  totalLand: {
+    en: "TOTAL LAND",
+    hi: "कुल ज़मीन",
+    mr: "एकूण जमीन",
+    gu: "કુલ જમીન",
+    kn: "ಒಟ್ಟು ಜಮೀನು",
+    te: "మొత్తం భూమి",
+    ta: "மொத்த நிலம்",
+    pa: "ਕੁੱਲ ਜ਼ਮੀਨ"
+  },
+  cropVariety: {
+    en: "CROP VARIETY",
+    hi: "फसल की किस्म",
+    mr: "पिकाचा वाण",
+    gu: "પાકની જાત",
+    kn: "ಬೆಳೆಯ ತಳಿ",
+    te: "పంట రకం",
+    ta: "பயிர் ரகம்",
+    pa: "ਫ਼ਸਲ ਦੀ ਕਿਸਮ"
+  },
+  soilType: {
+    en: "SOIL TYPE",
+    hi: "मिट्टी का प्रकार",
+    mr: "मातीचा प्रकार",
+    gu: "માટીનો પ્રકાર",
+    kn: "ಮಣ್ಣಿನ ವಿಧ",
+    te: "నేల రకం",
+    ta: "மண் வகை",
+    pa: "ਮਿੱਟੀ ਦੀ ਕਿਸਮ"
+  },
+  irrigation: {
+    en: "IRRIGATION",
+    hi: "सिंचाई",
+    mr: "सिंचन",
+    gu: "સિંચાઈ",
+    kn: "ನೀರಾವರಿ",
+    te: "నీటిపారుదల",
+    ta: "நீர்ப்பாசனம்",
+    pa: "ਸਿੰਚਾਈ"
+  },
+  highWaterRetention: {
+    en: "High Water Retention",
+    hi: "अधिक जल संचयन क्षमता",
+    mr: "जास्त पाणी धरून ठेवणारी",
+    gu: "વધુ પાણી સંગ્રહ ક્ષમતા",
+    kn: "ಹೆಚ್ಚು ನೀರು ಹಿಡಿದಿಟ್ಟುಕೊಳ್ಳುವಿಕೆ",
+    te: "ఎక్కువ నీటి నిలుపుదల",
+    ta: "அதிக நீர் தக்கவைப்பு",
+    pa: "ਵੱਧ ਪਾਣੀ ਸੋਖਣ ਸਮਰੱਥਾ"
+  },
+  registeredFarmParameters: {
+    en: "Registered Farm Parameters",
+    hi: "पंजीकृत खेत विवरण",
+    mr: "नोंदणीकृत शेती तपशील",
+    gu: "નોંધાયેલ ખેતરના પરિમાણો",
+    kn: "ನೋಂದಾಯಿತ ಹೊಲದ ವಿವರಗಳು",
+    te: "నమోదిత పొలం వివరాలు",
+    ta: "பதிவுசெய்யப்பட்ட பண்ணை அளவீடுகள்",
+    pa: "ਰਜਿਸਟਰਡ ਖੇਤ ਦੇ ਵੇਰਵੇ"
+  },
+  farmEstateName: {
+    en: "Farm / Estate Name",
+    hi: "खेत / एस्टेट का नाम",
+    mr: "शेत / इस्टेटचे नाव",
+    gu: "ખેતર / ફાર્મનું નામ",
+    kn: "ಹೊಲ / ಎಸ್ಟೇಟ್ ಹೆಸರು",
+    te: "పొలం / ఎస్టేట్ పేరు",
+    ta: "பண்ணை / தோட்டம் பெயர்",
+    pa: "ਖੇਤ / ਫਾਰਮ ਦਾ ਨਾਮ"
+  },
+  farmerContactMobile: {
+    en: "Farmer Contact Mobile",
+    hi: "किसान मोबाइल नंबर",
+    mr: "शेतकरी मोबाइल नंबर",
+    gu: "ખેડૂત મોબાઇલ નંબર",
+    kn: "ರೈತರ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ",
+    te: "రైతు మొబైల్ నంబర్",
+    ta: "விவசாயி அலைபேசி எண்",
+    pa: "ਕਿਸਾਨ ਮੋਬਾਈਲ ਨੰਬਰ"
+  },
+  farmerAccountEmail: {
+    en: "Farmer Account Email",
+    hi: "किसान खाता ईमेल",
+    mr: "शेतकरी ईमेल",
+    gu: "ખેડૂત એકાઉન્ટ ઇમેઇલ",
+    kn: "ರೈತರ ಇಮೇಲ್",
+    te: "రైతు ఖాతా ఇమెయిల్",
+    ta: "விவசாயி கணக்கு மின்னஞ்சல்",
+    pa: "ਕਿਸਾਨ ਖਾਤਾ ਈਮੇਲ"
+  },
+  plantingDate: {
+    en: "Planting Date",
+    hi: "बुवाई की तारीख",
+    mr: "लागवडीची तारीख",
+    gu: "વાવણીની તારીખ",
+    kn: "ಬಿತ್ತನೆ ದಿನಾಂಕ",
+    te: "నాటు వేసిన తేదీ",
+    ta: "நடவு தேதி",
+    pa: "ਬਿਜਾਈ ਦੀ ਮਿਤੀ"
+  },
+  nutrientBaseline: {
+    en: "Nutrient Baseline (N - P - K)",
+    hi: "पोषक तत्व आधार (N - P - K)",
+    mr: "खतांचे प्रमाण (N - P - K)",
+    gu: "પોષક તત્વોનું પ્રમાણ (N - P - K)",
+    kn: "ಪೋಷಕಾಂಶಗಳ ಪ್ರಮಾಣ (N - P - K)",
+    te: "పోషకాల ప్రాథమిక స్థాయి (N - P - K)",
+    ta: "ஊட்டச்சத்து அடிப்படை (N - P - K)",
+    pa: "ਪੌਸ਼ਟਿਕ ਤੱਤ ਆਧਾਰ (N - P - K)"
+  },
+  calibratedYieldTarget: {
+    en: "Calibrated Yield Target",
+    hi: "लक्ष्यित उपज",
+    mr: "निश्चित उत्पादन लक्ष्य",
+    gu: "નિર્ધારિત ઉપજ લક્ષ્ય",
+    kn: "ಗುರಿಯಿರಿಸಿದ ಇಳುವರಿ",
+    te: "లక్ష్యిత దిగుబడి",
+    ta: "நிர்ணயிக்கப்பட்ட மகசூல் இலக்கு",
+    pa: "ਮਿਥਿਆ ਝਾੜ ਟੀਚਾ"
+  },
+  editAgronomicParams: {
+    en: "Edit Agronomic Parameters",
+    hi: "कृषि मापदंड बदलें",
+    mr: "शेतीविषयक मापदंड बदला",
+    gu: "કૃષિ માપદંડ સુધારો",
+    kn: "ಕೃಷಿ ನಿಯತಾಂಕಗಳನ್ನು ತಿದ್ದಿ",
+    te: "వ్యవసాయ పారామితులను సవరించండి",
+    ta: "வேளாண் அளவீடுகளை மாற்றவும்",
+    pa: "ਖੇਤੀਬਾੜੀ ਮਾਪਦੰਡ ਬਦਲੋ"
+  },
+  signOutSwitchFarm: {
+    en: "Sign Out / Switch Farm",
+    hi: "लॉग आउट / दूसरा खेत चुनें",
+    mr: "लॉग आउट / दुसरे शेत निवडा",
+    gu: "સાઇન આઉટ / બીજું ખેતર પસંદ કરો",
+    kn: "ಲಾಗ್ ಔಟ್ / ಬೇರೆ ಹೊಲ ಆಯ್ಕೆಮಾಡಿ",
+    te: "లాగ్ అవుట్ / మరొక పొలం ఎంచుకోండి",
+    ta: "வெளியேறு / மாற்று பண்ணை",
+    pa: "ਲਾਗ ਆਉਟ / ਦੂਜਾ ਖੇਤ ਚੁਣੋ"
+  },
+  tuneDigitalTwin: {
+    en: "Tune Your Living Digital Twin",
+    hi: "अपने डिजिटल ट्विन को समायोजित करें",
+    mr: "तुमचा डिजिटल ट्विन अद्ययावत करा",
+    gu: "તમારા ડિજિટલ ટ્વિનને વ્યવસ્થિત કરો",
+    kn: "ನಿಮ್ಮ ಡಿಜಿಟಲ್ ಟ್ವಿನ್ ಅನ್ನು ಸರಿಹೊಂದಿಸಿ",
+    te: "మీ డిజిటల్ ట్విన్‌ను ట్యూన్ చేయండి",
+    ta: "உங்கள் டிஜிட்டல் இரட்டையை சரிசெய்யவும்",
+    pa: "ਆਪਣੇ ਡਿਜੀਟਲ ਟਵਿਨ ਨੂੰ ਠੀਕ ਕਰੋ"
+  },
+  tuneDigitalTwinDesc: {
+    en: "Modifying your crop variety, land area, or soil type updates the predictive physics engine and yield forecasts across all screens.",
+    hi: "किस्म, भूमि क्षेत्र या मिट्टी के प्रकार में बदलाव करने से सभी स्क्रीन पर उपज का अनुमान स्वतः अपडेट हो जाता है।",
+    mr: "वाण, क्षेत्र किंवा मातीचा प्रकार बदलल्यास सर्व स्क्रीनवरील मॉडेल अंदाज आपोआप अद्यतनित होतो.",
+    gu: "પાકની જાત, જમીન અથવા માટીનો પ્રકાર બદલવાથી તમામ સ્ક્રીન પર મોડેલનો અંદાજ આપમેળે અપડેટ થાય છે.",
+    kn: "ಬೆಳೆಯ ತಳಿ, ವಿಸ್ತೀರ್ಣ ಅಥವಾ ಮಣ್ಣಿನ ಪ್ರಕಾರ ಬದಲಾಯಿಸುವುದರಿಂದ ಎಲ್ಲಾ ಪರದೆಗಳಲ್ಲಿ ಇಳುವರಿ ಅಂದಾಜು ನವೀಕರಣಗೊಳ್ಳುತ್ತದೆ.",
+    te: "పంట రకం, భూమి లేదా నేల రకాన్ని మార్చడం ద్వారా అన్ని స్క్రీన్‌లలో దిగుబడి అంచనా అప్‌డేట్ అవుతుంది.",
+    ta: "பயிர் ரகம், பரப்பளவு அல்லது மண் வகையை மாற்றுவது அனைத்து திரைகளிலும் மகசூல் கணிப்பை புதுப்பிக்கும்.",
+    pa: "ਫ਼ਸਲ ਦੀ ਕਿਸਮ, ਰਕਬਾ ਜਾਂ ਮਿੱਟੀ ਦੀ ਕਿਸਮ ਬਦਲਣ ਨਾਲ ਸਾਰੀਆਂ ਸਕ੍ਰੀਨਾਂ 'ਤੇ ਝਾੜ ਦਾ ਅਨੁਮਾਨ ਅੱਪਡੇਟ ਹੋ ਜਾਵੇਗਾ।"
+  },
+  farmerName: {
+    en: "Farmer Name",
+    hi: "किसान का नाम",
+    mr: "शेतकऱ्याचे नाव",
+    gu: "ખેડૂતનું નામ",
+    kn: "ರೈತರ ಹೆಸರು",
+    te: "రైతు పేరు",
+    ta: "விவசாயியின் பெயர்",
+    pa: "ਕਿਸਾਨ ਦਾ ਨਾਮ"
+  },
+  contactPhone: {
+    en: "Contact Phone Number",
+    hi: "संपर्क फोन नंबर",
+    mr: "संपर्क फोन नंबर",
+    gu: "સંપર્ક ફોન નંબર",
+    kn: "ಸಂಪರ್ಕ ದೂರವಾಣಿ ಸಂಖ್ಯೆ",
+    te: "సంప్రదింపు ఫోన్ నంబర్",
+    ta: "தொடர்பு தொலைபேசி எண்",
+    pa: "ਸੰਪਰਕ ਫੋਨ ਨੰਬਰ"
+  },
+  state: {
+    en: "State",
+    hi: "राज्य",
+    mr: "राज्य",
+    gu: "રાજ્ય",
+    kn: "ರಾಜ್ಯ",
+    te: "రాష్ట్రం",
+    ta: "மாநிலம்",
+    pa: "ਰਾਜ"
+  },
+  district: {
+    en: "District",
+    hi: "जिला",
+    mr: "जिल्हा",
+    gu: "જિલ્લો",
+    kn: "ಜಿಲ್ಲೆ",
+    te: "జిల్లా",
+    ta: "மாவட்டம்",
+    pa: "ਜ਼ਿਲ੍ਹਾ"
+  },
+  village: {
+    en: "Village / Town",
+    hi: "गाँव / कस्बा",
+    mr: "गाव / शहर",
+    gu: "ગામ / નગર",
+    kn: "ಗ್ರಾಮ / ಊರು",
+    te: "గ్రామం / పట్టణం",
+    ta: "கிராமம் / நகரம்",
+    pa: "ਪਿੰਡ / ਕਸਬਾ"
+  },
+  totalFarmLand: {
+    en: "Total Farm Land (Acres)",
+    hi: "कुल कृषि भूमि (एकड़)",
+    mr: "एकूण शेती जमीन (एकर)",
+    gu: "કુલ ખેતીની જમીન (એકર)",
+    kn: "ಒಟ್ಟು ಕೃಷಿ ಭೂಮಿ (ಎಕರೆ)",
+    te: "మొత్తం వ్యవసాయ భూమి (ఎకరాలు)",
+    ta: "மொத்த பண்ணை நிலம் (ஏக்கர்)",
+    pa: "ਕੁੱਲ ਖੇਤੀਬਾੜੀ ਜ਼ਮੀਨ (ਏਕੜ)"
+  },
+  sugarcaneVariety: {
+    en: "Sugarcane Variety",
+    hi: "गन्ने की किस्म",
+    mr: "उसाचा वाण",
+    gu: "શેરડીની જાત",
+    kn: "ಕಬ್ಬಿನ ತಳಿ",
+    te: "చెరకు రకం",
+    ta: "கரும்பு ரகம்",
+    pa: "ਗੰਨੇ ਦੀ ਕਿਸਮ"
+  },
+  soilClassification: {
+    en: "Soil Classification",
+    hi: "मिट्टी का वर्गीकरण",
+    mr: "मातीचे वर्गीकरण",
+    gu: "માટીનું વર્ગીકરણ",
+    kn: "ಮಣ್ಣಿನ ವರ್ಗೀಕರಣ",
+    te: "నేల వర్గీకరణ",
+    ta: "மண் வகைப்பாடு",
+    pa: "ਮਿੱਟੀ ਦਾ ਵਰਗੀਕਰਨ"
+  },
+  irrigationMethodFreq: {
+    en: "Irrigation Method & Frequency",
+    hi: "सिंचाई विधि और आवृत्ति",
+    mr: "सिंचन पद्धत आणि वारंवारता",
+    gu: "સિંચાઈ પદ્ધતિ અને આવર્તન",
+    kn: "ನೀರಾವರಿ ವಿಧಾನ ಮತ್ತು ಆವರ್ತನ",
+    te: "నీటిపారుదల పద్ధతి & ఫ్రీక్వెన్సీ",
+    ta: "பாசன முறை & இடைவெளி",
+    pa: "ਸਿੰਚਾਈ ਦਾ ਤਰੀਕਾ ਅਤੇ ਵਾਰਵਾਰਤਾ"
+  },
+  soilNutrientsNPK: {
+    en: "Soil Nutrients (N - P - K in kg/ha)",
+    hi: "मिट्टी के पोषक तत्व (N - P - K किग्रा/हे.)",
+    mr: "मातीतील खते (N - P - K किलो/हे.)",
+    gu: "જમીનના પોષક તત્વો (N - P - K કિગ્રા/હે.)",
+    kn: "ಮಣ್ಣಿನ ಪೋಷಕಾಂಶಗಳು (N - P - K ಕೆಜಿ/ಹೆ.)",
+    te: "నేల పోషకాలు (N - P - K కిలోలు/హెక్టార్)",
+    ta: "மண் சத்துக்கள் (N - P - K கிலோ/ஹெக்)",
+    pa: "ਮਿੱਟੀ ਦੇ ਪੌਸ਼ਟਿਕ ਤੱਤ (N - P - K ਕਿਲੋ/ਹੈ.)"
+  },
+  btnCancel: {
+    en: "Cancel",
+    hi: "रद्द करें",
+    mr: "रद्द करा",
+    gu: "રદ કરો",
+    kn: "ರದ್ದುಮಾಡಿ",
+    te: "రద్దు చేయండి",
+    ta: "ரத்து செய்",
+    pa: "ਰੱਦ ਕਰੋ"
+  },
+  saveAndCalibrate: {
+    en: "Save & Calibrate Twin",
+    hi: "सहेजें और ट्विन अपडेट करें",
+    mr: "जतन करा आणि ट्विन अद्यतनित करा",
+    gu: "સાચવો અને ટ્વિન અપડેટ કરો",
+    kn: "ಉಳಿಸಿ ಮತ್ತು ಟ್ವಿನ್ ನವೀಕರಿಸಿ",
+    te: "సేవ్ చేసి ట్విన్‌ను అప్‌డేట్ చేయండి",
+    ta: "சேமித்து இரட்டையைப் புதுப்பிக்கவும்",
+    pa: "ਸੰਭਾਲੋ ਅਤੇ ਟਵਿਨ ਅੱਪਡੇਟ ਕਰੋ"
+  },
+  saveSuccessTitle: {
+    en: "Parameters Saved Successfully!",
+    hi: "मापदंड सफलतापूर्वक सहेजे गए!",
+    mr: "मापदंड यशस्वीरित्या जतन केले!",
+    gu: "પરિમાણો સફળતાપૂર્વક સાચવવામાં આવ્યા!",
+    kn: "ನಿಯತಾಂಕಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಉಳಿಸಲಾಗಿದೆ!",
+    te: "పారామితులు విజయవంతంగా సేవ్ చేయబడ్డాయి!",
+    ta: "அளவீடுகள் வெற்றிகரமாக சேமிக்கப்பட்டன!",
+    pa: "ਮਾਪਦੰਡ ਸਫਲਤਾਪੂਰਵਕ ਸੰਭਾਲੇ ਗਏ!"
+  },
+  saveSuccessDesc: {
+    en: "Your farm digital twin has re-calibrated with updated agronomic metrics.",
+    hi: "आपके खेत का डिजिटल ट्विन नए कृषि मापदंडों के साथ अपडेट हो गया है।",
+    mr: "तुमच्या शेताचा डिजिटल ट्विन नवीन शेतीविषयक माहितीसह अद्यतनित झाला आहे.",
+    gu: "તમારા ખેતરનો ડિજિટલ ટ્વિન નવી વિગતો સાથે અપડેટ થઈ ગયો છે.",
+    kn: "ನಿಮ್ಮ ಡಿಜಿಟಲ್ ಟ್ವಿನ್ ಹೊಸ ಮಾಹಿತಿಯೊಂದಿಗೆ ಮರುಮಾಪನಗೊಂಡಿದೆ.",
+    te: "మీ డిజిటಲ್ ట్విన్ తాజా వివరాలతో అప్‌డేట్ చేయబడింది.",
+    ta: "உங்கள் டிஜிட்டல் இரட்டை புதிய விவரங்களுடன் புதுப்பிக்கப்பட்டது.",
+    pa: "ਤੁਹਾਡੇ ਖੇਤ ਦਾ ਡਿਜੀਟਲ ਟਵਿਨ ਨਵੇਂ ਵੇਰਵਿਆਂ ਨਾਲ ਅੱਪਡੇਟ ਹੋ ਗਿਆ ਹੈ।"
+  },
+  soilBlack: {
+    en: "Black Soil",
+    hi: "काली मिट्टी",
+    mr: "काळी माती",
+    gu: "કાળી માટી",
+    kn: "ಕಪ್ಪು ಮಣ್ಣು",
+    te: "నల్ల నేల",
+    ta: "கரிசல் மண்",
+    pa: "ਕਾਲੀ ਮਿੱਟੀ"
+  },
+  soilMediumBlack: {
+    en: "Medium Black Soil",
+    hi: "मध्यम काली मिट्टी",
+    mr: "मध्यम काळी माती",
+    gu: "મધ્યમ કાળી માટી",
+    kn: "ಮಧ್ಯಮ ಕಪ್ಪು ಮಣ್ಣು",
+    te: "మధ్యస్థ నల్ల నేల",
+    ta: "நடுத்தர கரிசல் மண்",
+    pa: "ਦਰਮਿਆਨੀ ਕਾਲੀ ਮਿੱਟੀ"
+  },
+  soilClayLoam: {
+    en: "Clay Loam",
+    hi: "चिकनी दोमट मिट्टी",
+    mr: "चिकणमाती",
+    gu: "ચીકણી ગોરાડુ માટી",
+    kn: "ಜೇಡಿ ಮಿಶ್ರಿತ ಮಣ್ಣು",
+    te: "క్లే లోమ్ నేల",
+    ta: "களிமண் பாங்கான மண்",
+    pa: "ਚੀਕਣੀ ਦੋਮਟ ਮਿੱਟੀ"
+  },
+  soilRedLoam: {
+    en: "Red Sandy Loam",
+    hi: "लाल बलुई दोमट",
+    mr: "लाल रेताड माती",
+    gu: "લાલ રેતાળ માટી",
+    kn: "ಕೆಂಪು ಮರಳು ಮಣ್ಣು",
+    te: "ఎర్ర ఇసుక నేల",
+    ta: "செம்மண் பாங்கான மண்",
+    pa: "ਲਾਲ ਰੇਤਲੀ ਮਿੱਟੀ"
+  },
+  soilAlluvial: {
+    en: "Alluvial Soil",
+    hi: "जलोढ़ मिट्टी",
+    mr: "गाळाची माती",
+    gu: "કાંપવાળી માટી",
+    kn: "ಮೆಕ್ಕಲು ಮಣ್ಣು",
+    te: "ఒండ్రు నేల",
+    ta: "வண்டல் மண்",
+    pa: "ਜਲੋਢ ਮਿੱਟੀ"
+  },
+  irrDrip: {
+    en: "Drip Irrigation",
+    hi: "ड्रिप सिंचाई",
+    mr: "ठिबक सिंचन",
+    gu: "ટપક સિંચાઈ",
+    kn: "ಹನಿ ನೀರಾವರಿ",
+    te: "బిందు సేద్యಂ",
+    ta: "சொட்டுநீர் பாசனம்",
+    pa: "ਤੁਪਕਾ ਸਿੰਚਾਈ"
+  },
+  irrFurrow: {
+    en: "Furrow Irrigation",
+    hi: "नाली सिंचाई",
+    mr: "सरी सिंचन",
+    gu: "ધોરિયા સિંચાઈ",
+    kn: "ಸಾಲು ನೀರಾವರಿ",
+    te: "కాలువ నీటిపారుదల",
+    ta: "மடை பாசனம்",
+    pa: "ਖਾਲੀ ਸਿੰਚਾਈ"
+  },
+  irrFlood: {
+    en: "Flood Irrigation",
+    hi: "बाढ़ सिंचाई",
+    mr: "मोकळे पाणी",
+    gu: "પૂર સિંચાઈ",
+    kn: "ಪ್ರವಾಹ ನೀರಾವರಿ",
+    te: "వరద పారుదల",
+    ta: "வெள்ளப் பாசனம்",
+    pa: "ਭਰਵਾਂ ਪਾਣੀ"
+  },
+  irrSprinkler: {
+    en: "Sprinkler Irrigation",
+    hi: "फव्वारा सिंचाई",
+    mr: "तुषार सिंचन",
+    gu: "ફુવારા પદ્ધતિ",
+    kn: "ತುಂತುರು ನೀರಾವರಿ",
+    te: "తుంపర సేద్యం",
+    ta: "தெளிப்பு நீர் பாசனம்",
+    pa: "ਫੁਹਾਰਾ ਸਿੰਚਾਈ"
+  },
+  timesPerWeek: {
+    en: "times/week",
+    hi: "बार/हफ्ता",
+    mr: "वेळा/आठवडा",
+    gu: "વાર/અઠવાડિયું",
+    kn: "ಬಾರಿ/ವಾರ",
+    te: "సార్లు/వారం",
+    ta: "முறை/வாரம்",
+    pa: "ਵਾਰ/ਹਫ਼ਤਾ"
+  },
+  every10Days: {
+    en: "Every 10 days",
+    hi: "हर 10 दिन में",
+    mr: "दर १० दिवसांनी",
+    gu: "દર ૧૦ દિવસે",
+    kn: "ಪ್ರತಿ 10 ದಿನಗಳಿಗೊಮ್ಮೆ",
+    te: "ప్రతి 10 రోజులకు",
+    ta: "ஒவ்வொரு 10 நாட்களுக்கும்",
+    pa: "ਹਰ 10 ਦਿਨਾਂ ਬਾਅਦ"
+  },
+  patilEstate: {
+    en: "Patil Sugarcane Estate",
+    hi: "पाटिल गन्ना फार्म",
+    mr: "पाटील ऊस शेती",
+    gu: "પાટીલ શેરડી ફાર્મ",
+    kn: "ಪಾಟೀಲ ಕಬ್ಬಿನ ಎಸ್ಟೇಟ್",
+    te: "పాటిల్ చెరకు ఎస్టేట్",
+    ta: "பாட்டீல் கரும்பு தோட்டம்",
+    pa: "ਪਾਟਿਲ ਗੰਨਾ ਫਾਰਮ"
+  }
 };
 
 export const languageList: { code: Language; name: string; nativeName: string }[] = [
@@ -1386,6 +1838,12 @@ interface I18nContextType {
   t: (key: string) => string;
   formatYield: (tonnesHa: number, qAcre?: number) => { primary: string; secondary: string; unitLabel: string };
   formatArea: (ha: number, acres?: number) => string;
+  translateCropStage: (stage: string) => string;
+  translateSoilType: (soil: string) => string;
+  translateIrrigation: (irr: string) => string;
+  translateFrequency: (freq: string) => string;
+  translateLocation: (loc: string) => string;
+  translateFarmName: (name: string) => string;
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
@@ -1433,6 +1891,98 @@ export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return key;
   };
 
+  const translateCropStage = (stage: string): string => {
+    if (!stage) return "";
+    const lower = stage.toLowerCase();
+    if (lower.includes("grand growth")) return t("stageGrandGrowth");
+    if (lower.includes("tillering")) return t("stageTillering");
+    if (lower.includes("germination")) return t("stageGermination");
+    if (lower.includes("ripening")) return t("stageRipening");
+    return stage;
+  };
+
+  const translateSoilType = (soil: string): string => {
+    if (!soil) return "";
+    const lower = soil.toLowerCase();
+    if (lower.includes("medium black")) return t("soilMediumBlack");
+    if (lower.includes("black")) return t("soilBlack");
+    if (lower.includes("clay")) return t("soilClayLoam");
+    if (lower.includes("red")) return t("soilRedLoam");
+    if (lower.includes("alluvial")) return t("soilAlluvial");
+    return soil;
+  };
+
+  const translateIrrigation = (method: string): string => {
+    if (!method) return "";
+    const lower = method.toLowerCase();
+    if (lower.includes("drip")) return t("irrDrip");
+    if (lower.includes("furrow")) return t("irrFurrow");
+    if (lower.includes("flood")) return t("irrFlood");
+    if (lower.includes("sprinkler")) return t("irrSprinkler");
+    return method;
+  };
+
+  const translateFrequency = (freq: string): string => {
+    if (!freq) return "";
+    const lower = freq.toLowerCase();
+    if (lower.includes("1 time") || lower.includes("1x")) return t("waterTimes1");
+    if (lower.includes("2 time") || lower.includes("2x")) return t("waterTimes2");
+    if (lower.includes("3 time") || lower.includes("3x")) return t("waterTimes3");
+    if (lower.includes("daily")) return t("waterDailyDrip");
+    if (lower.includes("10 day")) return t("every10Days");
+    return freq;
+  };
+
+  const translateLocation = (loc: string): string => {
+    if (!loc) return "";
+    let res = loc;
+    if (language === "gu") {
+      res = res.replace(/Kasba Bawada/gi, "કસબા બાવડા")
+               .replace(/Karveer/gi, "કરવીર")
+               .replace(/Kolhapur/gi, "કોલ્હાપુર")
+               .replace(/Maharashtra/gi, "મહારાષ્ટ્ર");
+    } else if (language === "hi") {
+      res = res.replace(/Kasba Bawada/gi, "कसबा बावडा")
+               .replace(/Karveer/gi, "करवीर")
+               .replace(/Kolhapur/gi, "कोल्हापूर")
+               .replace(/Maharashtra/gi, "महाराष्ट्र");
+    } else if (language === "mr") {
+      res = res.replace(/Kasba Bawada/gi, "कसबा बावडा")
+               .replace(/Karveer/gi, "करवीर")
+               .replace(/Kolhapur/gi, "कोल्हापूर")
+               .replace(/Maharashtra/gi, "महाराष्ट्र");
+    } else if (language === "kn") {
+      res = res.replace(/Kasba Bawada/gi, "ಕಸಬಾ ಬಾವಡಾ")
+               .replace(/Karveer/gi, "ಕರವೀರ")
+               .replace(/Kolhapur/gi, "ಕೊಲ್ಹಾಪುರ")
+               .replace(/Maharashtra/gi, "ಮಹಾರಾಷ್ಟ್ರ");
+    } else if (language === "te") {
+      res = res.replace(/Kasba Bawada/gi, "కస్బా బావడా")
+               .replace(/Karveer/gi, "కరవీర్")
+               .replace(/Kolhapur/gi, "కొల్హాపూర్")
+               .replace(/Maharashtra/gi, "మహారాష్ట్ర");
+    } else if (language === "ta") {
+      res = res.replace(/Kasba Bawada/gi, "கஸ்பா பாவ்டா")
+               .replace(/Karveer/gi, "கரவீர்")
+               .replace(/Kolhapur/gi, "கோலாப்பூர்")
+               .replace(/Maharashtra/gi, "மகாராஷ்டிரா");
+    } else if (language === "pa") {
+      res = res.replace(/Kasba Bawada/gi, "ਕਸਬਾ ਬਾਵੜਾ")
+               .replace(/Karveer/gi, "ਕਰਵੀਰ")
+               .replace(/Kolhapur/gi, "ਕੋਲਹਾਪੁਰ")
+               .replace(/Maharashtra/gi, "ਮਹਾਰਾਸ਼ਟਰ");
+    }
+    return res;
+  };
+
+  const translateFarmName = (name: string): string => {
+    if (!name) return "";
+    if (name.includes("Patil Sugarcane Estate")) {
+      return t("patilEstate");
+    }
+    return name;
+  };
+
   const formatYield = (tonnesHa: number, qAcre?: number) => {
     const qValue = qAcre !== undefined ? qAcre : Number((tonnesHa / 0.247105).toFixed(1));
     const tValue = Number(tonnesHa.toFixed(1));
@@ -1461,7 +2011,21 @@ export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <I18nContext.Provider value={{ language, setLanguage, unit, setUnit, t, formatYield, formatArea }}>
+    <I18nContext.Provider value={{
+      language,
+      setLanguage,
+      unit,
+      setUnit,
+      t,
+      formatYield,
+      formatArea,
+      translateCropStage,
+      translateSoilType,
+      translateIrrigation,
+      translateFrequency,
+      translateLocation,
+      translateFarmName
+    }}>
       {children}
     </I18nContext.Provider>
   );
